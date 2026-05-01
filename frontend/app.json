@@ -36,23 +36,12 @@
     "plugins": [
       "expo-router",
       [
-        "expo-splash-screen",
-        {
-          "image": "./assets/images/splash-icon.png",
-          "imageWidth": 200,
-          "resizeMode": "contain",
-          "backgroundColor": "#0077B6"
-        }
-      ],
-      [
         "expo-notifications",
         {
-          "icon": "./assets/images/icon.png",
           "color": "#0077B6",
           "defaultChannel": "water-reminders"
         }
-      ],
-      "expo-web-browser"
+      ]
     ],
     "experiments": {
       "typedRoutes": true

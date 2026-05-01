@@ -1,0 +1,143 @@
+{
+  "app_name": "AquaSmart",
+  "domain": "Health & Wellness",
+  "theme": "Light",
+  "archetype": "Organic & Earthy (Modified for Water Theme: Matte Sand + Deep Ocean)",
+  "language": "pt-BR",
+  "design_philosophy": {
+    "core_principles": [
+      "Calm and Functional: The app must feel like a breath of fresh air, not another stressful task list.",
+      "Flexible Tracking: Focus on recovery and positive reinforcement, shifting away from rigid guilt-inducing streaks.",
+      "Thumb-Optimized Navigation: Floating bottom actions, easily accessible with one hand.",
+      "Tactile Feedback: Use liquid glass and subtle depth (soft UI) to make logging water satisfying."
+    ]
+  },
+  "typography": {
+    "heading_font": "Outfit",
+    "body_font": "Manrope",
+    "rules": "Never use Inter for headings. Keep headings tight with 'tracking-tight'.",
+    "scale": {
+      "h1_hero": "text-4xl sm:text-5xl font-black tracking-tighter",
+      "h2_section": "text-2xl sm:text-3xl font-bold tracking-tight",
+      "h3_card": "text-xl font-semibold",
+      "body_main": "text-base font-medium leading-relaxed",
+      "label_small": "text-xs font-bold uppercase tracking-[0.2em]"
+    }
+  },
+  "colors": {
+    "background": {
+      "base": "#F7F9FC",
+      "surface": "#FFFFFF",
+      "glass": "bg-white/70 backdrop-blur-xl border border-white/20"
+    },
+    "primary": {
+      "default": "#0077B6",
+      "light": "#90E0EF",
+      "wave": "#00B4D8",
+      "description": "Used for water progress, main CTAs, and active states."
+    },
+    "accent": {
+      "gamification": "#FB8500",
+      "alert": "#F07167",
+      "description": "Used sparingly for streaks, badges, and important notifications to contrast the calm blue."
+    },
+    "text": {
+      "primary": "#023047",
+      "secondary": "#64748B",
+      "disabled": "#CBD5E1"
+    }
+  },
+  "spacing_and_layout": {
+    "global_padding": "p-6 sm:p-8",
+    "card_padding": "p-6",
+    "border_radius": {
+      "cards": "rounded-3xl",
+      "buttons": "rounded-full",
+      "widgets": "rounded-2xl"
+    },
+    "shadows": {
+      "soft_lift": "shadow-[0_8px_30px_rgb(0,0,0,0.04)]",
+      "water_glow": "shadow-[0_0_20px_rgba(0,180,216,0.3)]"
+    }
+  },
+  "motion_and_interactions": {
+    "water_wave": "Use Framer Motion to create a rising water effect. Animate border-radius between 40% and 60% while spinning slowly to simulate a fluid wave.",
+    "button_press": "Elastic bounce scale (0.95) on tap to provide tactile feedback.",
+    "page_transitions": "Soft fade and slight slide-up (y: 20 -> 0) to keep the flow uninterrupted.",
+    "glass_nav": "The bottom navigation bar must be floating and use glassmorphism (backdrop-blur-xl)."
+  },
+  "screens_and_flow": {
+    "1_Onboarding": {
+      "purpose": "Collect user data for smart water calculation and sleep hours.",
+      "ui_elements": [
+        "Greeting: 'Bem-vindo ao AquaSmart'",
+        "Inputs: 'Seu Peso (kg)', 'Idade', 'Nível de Atividade (Sedentário, Moderado, Ativo)'.",
+        "Sleep Settings: 'Horário de dormir' e 'Horário de acordar'.",
+        "CTA: 'Gerar Minha Meta' (Calculates goal, usually ~35ml per kg)."
+      ]
+    },
+    "2_Home": {
+      "purpose": "Main dashboard showing daily progress and quick-add actions.",
+      "ui_elements": [
+        "Header: 'Olá, [Nome]' with current date.",
+        "Hero Progress: A large circular or cup-shaped container showing the wave animation filling up. Text inside: '1500ml / 2500ml'.",
+        "Subtitle: 'Faltam 1000ml para a sua meta diária'.",
+        "Quick Add Bento Grid: 4 buttons (200ml, 300ml, 500ml, Personalizado) styled as soft tactile pills or squares with water drop icons.",
+        "Status: 'Notificações pausadas (Dormindo)' if current time is within sleep hours."
+      ]
+    },
+    "3_History": {
+      "purpose": "Visualize past consumption.",
+      "ui_elements": [
+        "Title: 'Seu Histórico'",
+        "Chart: Recharts BarChart showing the last 7 days of consumption vs goal line.",
+        "Stats Grid: 'Média diária', 'Dias na meta'."
+      ]
+    },
+    "4_Achievements": {
+      "purpose": "Gamification and streaks without guilt.",
+      "ui_elements": [
+        "Title: 'Conquistas'",
+        "Current Streak: 'Ofensiva de 5 dias 🔥'",
+        "Badge Grid: Unlockable medals (use the golden medal image here). Ex: 'Primeiro Gole', 'Semana Perfeita'."
+      ]
+    },
+    "5_Settings": {
+      "purpose": "Manage profile and notification hours.",
+      "ui_elements": [
+        "Title: 'Configurações'",
+        "Toggles: 'Notificações Inteligentes'.",
+        "Time Pickers: 'Dormir' e 'Acordar'.",
+        "Profile Edit: Update weight to recalculate goal."
+      ]
+    }
+  },
+  "components_strategy": {
+    "bottom_navigation": "Floating fixed bottom bar, rounded-full, glassmorphism background. Icons for Home, History, Achievements, Settings.",
+    "inputs": "Shadcn UI customized: large padding (h-14), rounded-2xl, soft background (#F1F5F9), no harsh borders. Focus ring in #90E0EF.",
+    "charts": "Recharts. Remove grid lines for a cleaner look. Bars should have rounded tops (radius 8px) and use the primary gradient.",
+    "icons": "Use lucide-react or @phosphor-icons/react (Duotone style for a premium soft look)."
+  },
+  "media_urls": {
+    "water_drop_hero": {
+      "url": "https://images.unsplash.com/photo-1628338514816-5f68fcfc14d5?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA4Mzl8MHwxfHNlYXJjaHwxfHxtaW5pbWFsaXN0JTIwY2xlYW4lMjB3YXRlciUyMGRyb3B8ZW58MHx8fHwxNzc3NDkzNzE0fDA&ixlib=rb-4.1.0&q=85",
+      "description": "Minimalist clear water drop. Use this as an avatar placeholder or hero background texture with low opacity."
+    },
+    "water_texture_bg": {
+      "url": "https://images.unsplash.com/photo-1769270663102-c27e33dbe853?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzN8MHwxfHNlYXJjaHwzfHxjYWxtJTIwb2NlYW4lMjB3YXRlciUyMHRleHR1cmV8ZW58MHx8fHwxNzc3NDkzNzE0fDA&ixlib=rb-4.1.0&q=85",
+      "description": "Calm rippling blue water surface. Excellent for the top header background or an immersive history chart background."
+    },
+    "achievement_badge": {
+      "url": "https://images.pexels.com/photos/7267547/pexels-photo-7267547.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "description": "Gold medal with red ribbon. Use this in the Achievements (Conquistas) screen for unlocked badges."
+    }
+  },
+  "instructions_to_main_agent": [
+    "Strictly follow the color palette. DO NOT use generic purple or standard dark themes.",
+    "Implement the UI using a mobile-first approach (max-w-md mx-auto) to simulate the React Native Expo app within the web browser.",
+    "The texts must be strictly in Portuguese (pt-BR) as defined in screens_and_flow.",
+    "Ensure all interactive elements have data-testid attributes (e.g., data-testid='quick-add-200ml').",
+    "Use Framer Motion to create a fluid, calming liquid wave animation for the Home screen progress tracker.",
+    "Ensure the layout has generous padding (p-6 or p-8) and uses rounded corners generously to feel soft and approachable."
+  ]
+}

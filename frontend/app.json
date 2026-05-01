@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "AquaSmart",
-    "slug": "frontend",
+    "slug": "aquasmart",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -9,12 +9,15 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
+      "bundleIdentifier": "com.aquasmart.app",
       "supportsTablet": true,
       "infoPlist": {
         "UIBackgroundModes": ["remote-notification"]
       }
     },
     "android": {
+      "package": "com.aquasmart.app",
+      "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#0077B6"

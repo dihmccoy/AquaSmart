@@ -12,7 +12,9 @@
       "bundleIdentifier": "com.aquasmart.app",
       "supportsTablet": true,
       "infoPlist": {
-        "UIBackgroundModes": ["remote-notification"]
+        "UIBackgroundModes": [
+          "remote-notification"
+        ]
       }
     },
     "android": {
@@ -56,6 +58,12 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "2fc85394-3ff7-45ce-a3e4-7f0db3e52b83"
+      }
     }
   }
 }

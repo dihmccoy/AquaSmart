@@ -74,7 +74,11 @@ export async function scheduleSmartReminders(
   if (Platform.OS === "web") return 0;
   if (!profile.notificationsEnabled) return 0;
 
-  await cancelAllReminders();
+  try {
+    await cancelAllReminders();
+  } catch (e) {
+    console.warn("cancelAllReminders failed", e);
+  }
 
   const cupSize = profile.cupSizeMl > 0 ? profile.cupSizeMl : 250;
   const totalReminders = Math.max(
@@ -92,7 +96,6 @@ export async function scheduleSmartReminders(
   } else {
     windowMin = 24 * 60 - wakeMin + sleepMin;
   }
-  // pad first reminder 30min after wake, last 30min before sleep
   const startOffset = 30;
   const endOffset = 30;
   const usableWindow = Math.max(60, windowMin - startOffset - endOffset);
@@ -105,22 +108,25 @@ export async function scheduleSmartReminders(
     const hour = Math.floor(targetMin / 60);
     const minute = targetMin % 60;
 
-    await Notifications.scheduleNotificationAsync({
-      content: {
-        title: pick(REMINDER_TITLES),
-        body: pick(REMINDER_BODIES),
-        sound: "default",
-        data: { type: "water-reminder", index: i },
-      },
-      trigger: {
-        type: Notifications.SchedulableTriggerInputTypes.CALENDAR,
-        hour,
-        minute,
-        repeats: true,
-        channelId: "water-reminders",
-      },
-    });
-    scheduled++;
+    try {
+      await Notifications.scheduleNotificationAsync({
+        content: {
+          title: pick(REMINDER_TITLES),
+          body: pick(REMINDER_BODIES),
+          sound: "default",
+          data: { type: "water-reminder", index: i },
+        },
+        trigger: {
+          type: Notifications.SchedulableTriggerInputTypes.DAILY,
+          hour,
+          minute,
+          channelId: "water-reminders",
+        },
+      });
+      scheduled++;
+    } catch (e) {
+      console.warn(`Failed to schedule reminder ${i}`, e);
+    }
   }
   return scheduled;
 }

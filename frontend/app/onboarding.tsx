@@ -52,30 +52,36 @@ export default function Onboarding() {
     !isNaN(ageNum) && ageNum >= 5 && ageNum <= 110;
 
   const handleFinish = async () => {
+    const profile = {
+      name: name.trim(),
+      weight: weightNum,
+      age: ageNum,
+      activity,
+      wakeHour: wakeDate.getHours(),
+      wakeMinute: wakeDate.getMinutes(),
+      sleepHour: sleepDate.getHours(),
+      sleepMinute: sleepDate.getMinutes(),
+      dailyGoalMl: goalMl,
+      notificationsEnabled: true,
+      cupSizeMl: 250,
+      createdAt: new Date().toISOString(),
+    };
     try {
-      const profile = {
-        name: name.trim(),
-        weight: weightNum,
-        age: ageNum,
-        activity,
-        wakeHour: wakeDate.getHours(),
-        wakeMinute: wakeDate.getMinutes(),
-        sleepHour: sleepDate.getHours(),
-        sleepMinute: sleepDate.getMinutes(),
-        dailyGoalMl: goalMl,
-        notificationsEnabled: true,
-        cupSizeMl: 250,
-        createdAt: new Date().toISOString(),
-      };
       await saveProfile(profile);
+    } catch (e) {
+      Alert.alert("Erro", "Não foi possível salvar seu perfil.");
+      return;
+    }
+    // Notifications are optional - failures should not block onboarding
+    try {
       const granted = await ensurePermissions();
       if (granted) {
         await scheduleSmartReminders(profile);
       }
-      router.replace("/(tabs)/home");
     } catch (e) {
-      Alert.alert("Erro", "Não foi possível salvar seu perfil.");
+      console.warn("Notification setup failed:", e);
     }
+    router.replace("/(tabs)/home");
   };
 
   return (
